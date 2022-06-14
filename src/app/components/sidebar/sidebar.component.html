@@ -1,0 +1,16 @@
+<div class="logo">
+    <img src="./assets/images/logo.svg" alt="Applicature">
+</div>
+<nav class="main-navigation-container">
+  <ul class="main-navigation-item">
+    <li *ngFor="let item of menuItems">
+      <a [routerLink]="item.routerLink"
+        routerLinkActive="main-navigation-item-active"
+      >
+        <auc-icon [icon]="item.icon" class="title-icon"></auc-icon>
+        {{item.title}}
+      </a>
+    </li>
+  </ul>
+
+</nav>

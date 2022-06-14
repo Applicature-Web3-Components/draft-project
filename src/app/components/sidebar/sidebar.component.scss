@@ -1,0 +1,24 @@
+@use 'common' as c;
+
+.logo {
+  margin: 30px 24px 35px;
+}
+
+.main-navigation-container {
+  .main-navigation-item {
+    a {
+      display: flex;
+      align-items: center;
+      color: c.$sidebar-menu-color;
+      padding: 15px 24px;
+
+      .title-icon {
+        margin-right: 9px;
+      }
+
+      &.main-navigation-item-active {
+        background: c.$sidebar-menu-bg-active;
+      }
+    }
+  }
+}
