@@ -1,0 +1,12 @@
+@use 'common' as c;
+
+.page-wrapper {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  min-height: 100vh;
+
+  .sidebar {
+    background: c.$sidebar-bg-color;
+  }
+}
+
