@@ -36,7 +36,7 @@ export function initWalletServiceFactory(
         token: 'BNB',
         label: 'BNB Chain',
         rpcUrl: 'https://data-seed-prebsc-1-s1.binance.org:8545',
-        icon: 'assets/svg/network/bsc.svg',
+        icon: 'assets/images/network/bsc.svg',
         blockExplorerUrl: 'https://testnet.bscscan.com',
         blockExplorerApiUrl: 'https://api-testnet.bscscan.com/api',
       },
@@ -45,15 +45,15 @@ export function initWalletServiceFactory(
         token: AucNativeCurrencies[AUC_CHAIN_ID.POLYGON_TESTNET].name,
         label: 'Matic Mainnet',
         rpcUrl: AucRpcUrls[AUC_CHAIN_ID.POLYGON_TESTNET][0],
-        icon: 'assets/svg/network/polygon.svg',
+        icon: 'assets/images/network/polygon.svg',
         blockExplorerUrl: AucBlockExplorerUrls[AUC_CHAIN_ID.POLYGON_TESTNET][0],
       }
     ],
     appMetadata: {
-      name: "Ngx Universal Components",
-      icon: "assets/img/connection/connection-icon.png",
-      logo: "assets/img/connection/connection-logo.svg",
-      description: "Ngx Universal Components documentation.",
+      name: "Draft Project",
+      icon: "/assets/images/connection/connection-icon.png",
+      logo: "/assets/images/connection/connection-logo.svg",
+      description: "Draft Project for Ngx Universal Components.",
       recommendedInjectedWallets: [
         { name: 'MetaMask', url: 'https://metamask.io' }
       ]
