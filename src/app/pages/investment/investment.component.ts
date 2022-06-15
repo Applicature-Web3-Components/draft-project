@@ -1,112 +1,28 @@
-import { Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit
+} from '@angular/core';
+import { takeUntil } from 'rxjs';
 
 import {
   AUC_SORT_DIRECTION, AucDialogService,
   AucTableHeaderItem,
   AucTableRow, AucTransferModalComponent,
-  AucTransferModalData
+  AucTransferModalData, AucWalletConnectService, BaseSubscriber
 } from '@applicature/components';
 import { AS_COLOR_GROUP } from '@applicature/styles';
 
-const TableData: AucTableRow[] = [
-  {
-    action: {
-      value: 'Withdraw',
-      icon: 'assets/images/icons/minus-red.svg'
-    },
-    tokens: [
-      {
-        value: '1.240123',
-        icon: 'assets/images/network/eth.svg',
-        withBg: true
-      },
-      {
-        value: '5.2k',
-        icon: 'assets/images/coin/usdt.svg',
-        withBg: true
-      }
-    ],
-    value: {
-      value: '$10.4k',
-    },
-    time: {
-      value: 'about 6 hours ago ↗',
-      link: 'https://www.google.com/'
-    }
-  },
-  {
-    action: {
-      value: 'Withdraw',
-      icon: 'assets/images/icons/minus-red.svg'
-    },
-    tokens: [
-      {
-        value: '1.0...01234',
-        icon: 'assets/images/network/eth.svg',
-        withBg: true
-      }
-    ],
-    value: {
-      value: '$4.2k',
-    },
-    time: {
-      value: 'about 6 hours ago ↗',
-      link: 'https://www.google.com/'
-    }
-  },
-  {
-    action: {
-      value: 'Invest',
-      icon: 'assets/images/icons/plus-green.svg'
-    },
-    tokens: [
-      {
-        value: '500',
-        icon: 'assets/images/coin/usdt.svg',
-        withBg: true
-      }
-    ],
-    value: {
-      value: '$500',
-    },
-    time: {
-      value: 'about 6 hours ago ↗',
-      link: 'https://www.google.com/'
-    }
-  },
-  {
-    action: {
-      value: 'Invest',
-      icon: 'assets/images/icons/plus-green.svg'
-    },
-    tokens: [
-      {
-        value: '1.240123',
-        icon: 'assets/images/network/eth.svg',
-        withBg: true
-      },
-      {
-        value: '5.2k',
-        icon: 'assets/images/coin/usdt.svg',
-        withBg: true
-      }
-    ],
-    value: {
-      value: '$10.4k',
-    },
-    time: {
-      value: 'about 6 hours ago ↗',
-      link: 'https://www.google.com/'
-    }
-  },
-];
+import { tableDataMock } from '../../mocks/table-data-mock';
 
 @Component({
   selector: 'app-investment',
   templateUrl: './investment.component.html',
-  styleUrls: ['./investment.component.scss']
+  styleUrls: ['./investment.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class InvestmentComponent {
+export class InvestmentComponent extends BaseSubscriber implements OnInit {
 
   public COLORS = AS_COLOR_GROUP;
 
@@ -136,12 +52,26 @@ export class InvestmentComponent {
       }
     }
   ];
-  public tableData: AucTableRow[] = [...TableData];
+  public tableData: AucTableRow[] = [...tableDataMock];
   public isLoadMore: boolean = true;
+  public authorization: boolean = false;
 
   constructor(
-    private dialogService: AucDialogService
+    private dialogService: AucDialogService,
+    private _walletConnectService: AucWalletConnectService,
+    private _cdr: ChangeDetectorRef,
   ) {
+    super();
+  }
+
+  ngOnInit() {
+    this.authorization = this._walletConnectService.connectionState.connected;
+
+    this._walletConnectService.connectionState$
+      .subscribe(connectionState => {
+        this.authorization = connectionState.connected;
+        this._cdr.markForCheck();
+      });
   }
 
   loadMoreTable(): void {
@@ -149,7 +79,7 @@ export class InvestmentComponent {
     this.tableData = [
       ...this.tableData,
       {
-        ...TableData[1],
+        ...tableDataMock[1],
         time: {
           value: 'about 6 hours ago ↗',
           link: 'https://www.google.com/'
@@ -182,6 +112,14 @@ export class InvestmentComponent {
     this.dialogService.open<AucTransferModalComponent, AucTransferModalData>(AucTransferModalComponent,
       {
         data,
+      });
+  }
+
+  connectWallet(): void {
+    this._walletConnectService.connectWallet(false)
+      .pipe(takeUntil(this.notifier))
+      .subscribe((connectionState) => {
+        this.authorization = connectionState.connected;
       });
   }
 

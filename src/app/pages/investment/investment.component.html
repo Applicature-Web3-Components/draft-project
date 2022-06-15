@@ -14,24 +14,37 @@
         <div class="pool-value">528,082 USDT</div>
         <div class="pool-name">Pool Value</div>
       </div>
-      <div class="pool-item item-with-buttons">
-        <div class="pool-value">0 USDT</div>
-        <div class="pool-name">My Pool Balance</div>
-        <div class="btn-group">
-          <auc-button label="Invest"
-                      [height]="48"
-                      [adaptive]="true"
-                      (onClick)="showInvestModal()">
+      <div class="pool-item">
+        <ng-container *ngIf="authorization; else withoutAuth">
+          <div class="pool-value">0 USDT</div>
+          <div class="pool-name">My Pool Balance</div>
+          <div class="btn-group">
+            <auc-button label="Invest"
+                        [height]="48"
+                        [adaptive]="true"
+                        (onClick)="showInvestModal()">
 
-          </auc-button>
-          <auc-button label="Withdraw"
-                      [color]="COLORS.GRAY"
-                      [height]="48"
-                      [adaptive]="true"
-                      [disabled]="true">
+            </auc-button>
+            <auc-button
+              label="Withdraw"
+              [color]="COLORS.GRAY"
+              [height]="48"
+              [adaptive]="true"
+              [disabled]="true">
 
-          </auc-button>
-        </div>
+            </auc-button>
+          </div>
+        </ng-container>
+        <ng-template #withoutAuth>
+          <div class="btn-single">
+            <auc-button label="Invest"
+                        [height]="48"
+                        [adaptive]="true"
+                        (onClick)="connectWallet()">
+
+            </auc-button>
+          </div>
+        </ng-template>
       </div>
     </div>
   </div>
