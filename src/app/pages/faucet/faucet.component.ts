@@ -10,8 +10,6 @@ import { environment } from '../../../environments/environment';
   styleUrls: ['./faucet.component.scss']
 })
 export class FaucetComponent {
-
   amount: string = aucToWei(1, 18);
   contractToken: string = environment.faucetTokenAddress;
-
 }
