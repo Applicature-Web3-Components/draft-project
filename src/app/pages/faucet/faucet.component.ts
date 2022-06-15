@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { aucToWei } from '@applicature/components';
 
@@ -9,14 +9,7 @@ import { environment } from '../../../environments/environment';
   templateUrl: './faucet.component.html',
   styleUrls: ['./faucet.component.scss']
 })
-export class FaucetComponent implements OnInit {
-
+export class FaucetComponent {
   amount: string = aucToWei(1, 18);
   contractToken: string = environment.faucetTokenAddress;
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

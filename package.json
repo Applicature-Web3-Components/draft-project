@@ -51,18 +51,5 @@
     "url": "^0.11.0",
     "util": "^0.12.4",
     "webpack": "^5.73.0"
-  },
-  "browser": {
-    "crypto": false,
-    "stream": false,
-    "assert": false,
-    "http": false,
-    "https": false,
-    "os": false,
-    "path": false,
-    "buffer": false,
-    "process": false,
-    "util": false,
-    "url": false
   }
 }

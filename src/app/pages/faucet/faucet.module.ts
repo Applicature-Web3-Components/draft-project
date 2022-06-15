@@ -7,7 +7,6 @@ import { FaucetComponent } from './faucet.component';
 import { FaucetRoutingModule } from './faucet-routing.module';
 
 
-
 @NgModule({
   declarations: [
     FaucetComponent

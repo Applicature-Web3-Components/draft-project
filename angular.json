@@ -32,6 +32,7 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
+                "node_modules/@applicature/styles/src/lib/scss",
                 "src/scss"
               ]
             },
