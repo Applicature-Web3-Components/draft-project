@@ -8,6 +8,8 @@ $main-bg-color: map-get(c.$gray, 1);
 $sidebar-bg-color: map-get(c.$blue, 1);
 $sidebar-menu-color: map-get(c.$white, 1);
 $sidebar-menu-bg-active: map-get(c.$blue, 2);
+$item-bg-color: map-get(c.$white, 1);
+$item-label-color: map-get(c.$gray, 2);
 
 // Breakpoints
 $grid-breakpoints: (

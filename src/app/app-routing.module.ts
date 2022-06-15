@@ -6,8 +6,12 @@ import { ROUTER_LINKS } from './enums';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: ROUTER_LINKS.FAUCET,
+    redirectTo: ROUTER_LINKS.INVESTMENT,
     pathMatch: 'full'
+  },
+  {
+    path: ROUTER_LINKS.INVESTMENT,
+    loadChildren: () => import('./pages/investment/investment.module').then(m => m.InvestmentModule)
   },
   {
     path: ROUTER_LINKS.FAUCET,
@@ -15,7 +19,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: ROUTER_LINKS.FAUCET,
+    redirectTo: ROUTER_LINKS.INVESTMENT,
   }
 ];
 
