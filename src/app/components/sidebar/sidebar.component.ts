@@ -14,10 +14,15 @@ export class SidebarComponent {
 
   public menuItems: SidebarMenuItem[] = [
     {
+      routerLink: ROUTER_LINKS.INVESTMENT,
+      title: PageTitlesByUrl[ROUTER_LINKS.INVESTMENT],
+      icon: PageIconsByUrl[ROUTER_LINKS.INVESTMENT]
+    },
+    {
       routerLink: ROUTER_LINKS.FAUCET,
       title: PageTitlesByUrl[ROUTER_LINKS.FAUCET],
       icon: PageIconsByUrl[ROUTER_LINKS.FAUCET]
-    },
+    }
   ]
 
 }
