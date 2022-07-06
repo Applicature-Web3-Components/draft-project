@@ -29,7 +29,16 @@ export function initWalletServiceFactory(
   walletConnectService: AucWalletConnectService
 ): () => Observable<void> {
   return () => walletConnectService.initialize({
-    wallets: [ injected, walletConnect ],
+    wallets: [
+      {
+        label: 'MetaMask',
+        module: injected,
+      },
+      {
+        label: 'WalletConnect',
+        module: walletConnect
+      }
+    ],
     chains: [
       {
         id: AUC_CHAIN_ID.BSC_TESTNET,
@@ -48,16 +57,7 @@ export function initWalletServiceFactory(
         icon: 'assets/images/network/polygon.svg',
         blockExplorerUrl: AucBlockExplorerUrls[AUC_CHAIN_ID.POLYGON_TESTNET][0],
       }
-    ],
-    appMetadata: {
-      name: "Draft Project",
-      icon: "/assets/images/connection/connection-icon.png",
-      logo: "/assets/images/connection/connection-logo.svg",
-      description: "Draft Project for Ngx Universal Components.",
-      recommendedInjectedWallets: [
-        { name: 'MetaMask', url: 'https://metamask.io' }
-      ]
-    }
+    ]
   });
 }
 

@@ -116,7 +116,7 @@ export class InvestmentComponent extends BaseSubscriber implements OnInit {
   }
 
   connectWallet(): void {
-    this._walletConnectService.connectWallet(false)
+    this._walletConnectService.connect()
       .pipe(takeUntil(this.notifier))
       .subscribe((connectionState) => {
         this.authorization = connectionState.connected;
