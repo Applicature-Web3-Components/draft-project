@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { aucToWei } from '@applicature/components';
+import { w3sToWei } from '@applicature/ngx-web3-synergy';
 
 import { environment } from '../../../environments/environment';
 
@@ -10,6 +10,6 @@ import { environment } from '../../../environments/environment';
   styleUrls: ['./faucet.component.scss']
 })
 export class FaucetComponent {
-  amount: string = aucToWei(1, 18);
+  amount: string = w3sToWei(1, 18);
   contractToken: string = environment.faucetTokenAddress;
 }

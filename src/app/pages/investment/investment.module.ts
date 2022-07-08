@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { AucButtonModule, AucDialogModule, AucTableModule, ModalsModule } from '@applicature/components';
+import { W3sButtonModule, W3sDialogModule, W3sTableModule, W3sModalsModule } from '@applicature/ngx-web3-synergy';
 
 import { InvestmentComponent } from './investment.component';
 import { InvestmentRoutingModule } from './investment-routing.module';
@@ -14,10 +14,10 @@ import { InvestmentRoutingModule } from './investment-routing.module';
   imports: [
     CommonModule,
     InvestmentRoutingModule,
-    AucTableModule,
-    AucButtonModule,
-    AucDialogModule,
-    ModalsModule
+    W3sTableModule,
+    W3sButtonModule,
+    W3sDialogModule,
+    W3sModalsModule
   ]
 })
 export class InvestmentModule {
