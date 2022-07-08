@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { AucIconModule } from '@applicature/components';
+
+import { W3sIconModule } from '@applicature/ngx-web3-synergy';
 
 import { SidebarComponent } from './sidebar.component';
 
@@ -16,7 +17,7 @@ import { SidebarComponent } from './sidebar.component';
   imports: [
     CommonModule,
     RouterModule,
-    AucIconModule
+    W3sIconModule
   ]
 })
 export class SidebarModule { }

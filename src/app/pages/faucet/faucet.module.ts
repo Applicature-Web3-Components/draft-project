@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { AucFaucetModule } from '@applicature/components';
+import { W3sFaucetModule } from '@applicature/ngx-web3-synergy';
 
 import { FaucetComponent } from './faucet.component';
 import { FaucetRoutingModule } from './faucet-routing.module';
@@ -13,7 +13,7 @@ import { FaucetRoutingModule } from './faucet-routing.module';
   ],
   imports: [
     CommonModule,
-    AucFaucetModule,
+    W3sFaucetModule,
     FaucetRoutingModule
   ]
 })

@@ -52,14 +52,14 @@ import 'zone.js';  // Included with Angular CLI.
  * APPLICATION IMPORTS
  */
 
-import { AucEthereum } from '@applicature/components';
+import { W3sEthereum } from '@applicature/ngx-web3-synergy';
 import { Buffer } from 'buffer';
 import process from 'process';
 import Web3 from 'web3';
 
 declare global {
   interface Window {
-    ethereum: AucEthereum;
+    ethereum: W3sEthereum;
     global: any;
     web3: Web3;
   }

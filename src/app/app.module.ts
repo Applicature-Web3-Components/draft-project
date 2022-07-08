@@ -5,12 +5,13 @@ import { Observable } from 'rxjs';
 import injectedModule from '@web3-onboard/injected-wallets';
 import walletConnectModule from '@web3-onboard/walletconnect';
 import {
-  AUC_CHAIN_ID, AucBlockExplorerUrls,
-  AucConnectModule,
-  AucNativeCurrencies,
-  AucRpcUrls,
-  AucWalletConnectService
-} from '@applicature/components';
+  W3S_CHAIN_ID,
+  W3sBlockExplorerUrls,
+  W3sConnectModule,
+  W3sNativeCurrencies,
+  W3sRpcUrls,
+  W3sWalletConnectService
+} from '@applicature/ngx-web3-synergy';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,7 +27,7 @@ const walletConnect = walletConnectModule({
 });
 
 export function initWalletServiceFactory(
-  walletConnectService: AucWalletConnectService
+  walletConnectService: W3sWalletConnectService
 ): () => Observable<void> {
   return () => walletConnectService.initialize({
     wallets: [
@@ -41,7 +42,7 @@ export function initWalletServiceFactory(
     ],
     chains: [
       {
-        id: AUC_CHAIN_ID.BSC_TESTNET,
+        id: W3S_CHAIN_ID.BSC_TESTNET,
         token: 'BNB',
         label: 'BNB Chain',
         rpcUrl: 'https://data-seed-prebsc-1-s1.binance.org:8545',
@@ -50,12 +51,12 @@ export function initWalletServiceFactory(
         blockExplorerApiUrl: 'https://api-testnet.bscscan.com/api',
       },
       {
-        id: AUC_CHAIN_ID.POLYGON_TESTNET,
-        token: AucNativeCurrencies[AUC_CHAIN_ID.POLYGON_TESTNET].name,
+        id: W3S_CHAIN_ID.POLYGON_TESTNET,
+        token: W3sNativeCurrencies[W3S_CHAIN_ID.POLYGON_TESTNET].name,
         label: 'Matic Mainnet',
-        rpcUrl: AucRpcUrls[AUC_CHAIN_ID.POLYGON_TESTNET][0],
+        rpcUrl: W3sRpcUrls[W3S_CHAIN_ID.POLYGON_TESTNET][0],
         icon: 'assets/images/network/polygon.svg',
-        blockExplorerUrl: AucBlockExplorerUrls[AUC_CHAIN_ID.POLYGON_TESTNET][0],
+        blockExplorerUrl: W3sBlockExplorerUrls[W3S_CHAIN_ID.POLYGON_TESTNET][0],
       }
     ]
   });
@@ -71,13 +72,13 @@ export function initWalletServiceFactory(
     AppRoutingModule,
     HeaderModule,
     SidebarModule,
-    AucConnectModule.forRoot()
+    W3sConnectModule.forRoot()
   ],
   providers: [
     {
       provide: APP_INITIALIZER,
       useFactory: initWalletServiceFactory,
-      deps: [ AucWalletConnectService ],
+      deps: [ W3sWalletConnectService ],
       multi: true
     }
   ],

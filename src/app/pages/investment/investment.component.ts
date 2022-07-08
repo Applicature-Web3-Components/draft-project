@@ -7,11 +7,15 @@ import {
 import { takeUntil } from 'rxjs';
 
 import {
-  AUC_SORT_DIRECTION, AucDialogService,
-  AucTableHeaderItem,
-  AucTableRow, AucTransferModalComponent,
-  AucTransferModalData, AucWalletConnectService, BaseSubscriber
-} from '@applicature/components';
+  W3S_SORT_DIRECTION,
+  W3sDialogService,
+  W3sTableHeaderItem,
+  W3sTableRow,
+  W3sTransferModalComponent,
+  W3sTransferModalData,
+  W3sWalletConnectService,
+  BaseSubscriber
+} from '@applicature/ngx-web3-synergy';
 import { AS_COLOR_GROUP } from '@applicature/styles';
 
 import { tableDataMock } from '../../mocks/table-data-mock';
@@ -26,7 +30,7 @@ export class InvestmentComponent extends BaseSubscriber implements OnInit {
 
   public COLORS = AS_COLOR_GROUP;
 
-  public tableHeaders: AucTableHeaderItem[] = [
+  public tableHeaders: W3sTableHeaderItem[] = [
     {
       position: 1,
       rowKey: 'action',
@@ -48,17 +52,17 @@ export class InvestmentComponent extends BaseSubscriber implements OnInit {
       value: 'Time',
       sort: {
         sortBy: 'time',
-        sortDirection: AUC_SORT_DIRECTION.DESC
+        sortDirection: W3S_SORT_DIRECTION.DESC
       }
     }
   ];
-  public tableData: AucTableRow[] = [...tableDataMock];
+  public tableData: W3sTableRow[] = [...tableDataMock];
   public isLoadMore: boolean = true;
   public authorization: boolean = false;
 
   constructor(
-    private dialogService: AucDialogService,
-    private _walletConnectService: AucWalletConnectService,
+    private dialogService: W3sDialogService,
+    private _walletConnectService: W3sWalletConnectService,
     private _cdr: ChangeDetectorRef,
   ) {
     super();
@@ -93,7 +97,7 @@ export class InvestmentComponent extends BaseSubscriber implements OnInit {
   }
 
   showInvestModal(): void {
-    const data: AucTransferModalData = {
+    const data: W3sTransferModalData = {
       header: 'Invest',
       symbol: 'USDT',
       allowance: '1000000000000000000',
@@ -109,7 +113,7 @@ export class InvestmentComponent extends BaseSubscriber implements OnInit {
       }
     };
 
-    this.dialogService.open<AucTransferModalComponent, AucTransferModalData>(AucTransferModalComponent,
+    this.dialogService.open<W3sTransferModalComponent, W3sTransferModalData>(W3sTransferModalComponent,
       {
         data,
       });
